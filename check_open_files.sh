@@ -7,7 +7,7 @@
 
 version=1.1.25
 
-BASENAME=$(basename $0)
+BASENAME=$(basename "$0")
 
 # Exit Status
 okExit=0
@@ -48,14 +48,14 @@ done
 MESSAGE=""
 
 # Get the PID of program(s)
-PidOfProg="`ps -ef|grep $ProgName|grep -Ewv "grep|$0"|awk '{print $2}'`"
+PidOfProg="$(ps -ef|grep "$ProgName"|grep -Ewv "grep|$0"|awk '{print $2}')"
 [ -z "$PidOfProg" ] && echo "UNKNOWN: Not able to determine PID of $ProgName" && exit $unknownExit
 
-NoOfOpenFiles=$(ls -l /proc/$PidOfProg/fd|wc -l)
-if [ $NoOfOpenFiles -ge $ProgClevel ] ;then
+NoOfOpenFiles=$(ls -l /proc/"$PidOfProg"/fd|wc -l)
+if [ "$NoOfOpenFiles" -ge "$ProgClevel" ] ;then
   MESSAGE="pid $PidOfProg has $NoOfOpenFiles open files. "
   CRITICAL=yes
-elif [ $NoOfOpenFiles -ge $ProgWlevel ] ;then
+elif [ "$NoOfOpenFiles" -ge $ProgWlevel ] ;then
   MESSAGE="$MESSAGE pid $PidOfProg has $NoOfOpenFiles open files. "
   WARNING=yes
 else
