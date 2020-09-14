@@ -4,8 +4,10 @@
 #
 # Benjamin Goodacre 2013
 #
+# Adapted for BGHW by Johannes Starosta 2020
+# https://github.com/johannesst/nagios-check-open-files.git
 
-version=1.1.25
+version=1.1.26-bghw
 
 BASENAME=$(basename "$0")
 
